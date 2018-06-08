@@ -14,7 +14,8 @@ function findProductByAsin(req, res, next) {
     if (err) { return next(err); }
 
     if (product) {
-      // TODO: Send the product from db
+      req.logger.verbose(`Sending product with id ${product._id} to client`);
+      res.status(200).send(product);
     }
     else {
       (async () => {
@@ -91,11 +92,20 @@ function findProductByAsin(req, res, next) {
           return { category, dimensions, rank };
         });
 
-        await console.log(result);
+        await req.model('Product').create({
+          asin: req.params.asin,
+          category: result.category,
+          dimensions: result.dimensions,
+          rank: result.rank,
+        }, (err, product) => {
+          if (err) {
+            return logger.error(err);
+          }
 
-        await browser.close();
-
-        await res.send(result)
+          browser.close();
+          req.logger.verbose(`Product ${product._id} written to db. Sending product to client`);
+          res.status(201).send(product);
+        });
       })();
     }
 
