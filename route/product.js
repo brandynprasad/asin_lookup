@@ -14,7 +14,7 @@ function findProductByAsin(req, res, next) {
     if (err) { return next(err); }
 
     if (product) {
-      req.logger.verbose(`Sending product with id ${product._id} to client`);
+      req.logger.verbose(`Sending product ${product._id} to client`);
       res.status(200).send(product);
     }
     else {
@@ -34,8 +34,8 @@ function findProductByAsin(req, res, next) {
           let rank       = '';
 
           document.querySelectorAll('*').forEach((node) => {
-            // GET DIMENSIONS
 
+            // GET DIMENSIONS
             if (node.textContent.includes('Item Dimensions') && dimensions == '') {
               dimensions = node.textContent.substring(
                 node.textContent.lastIndexOf('L x W x H'),
@@ -93,25 +93,20 @@ function findProductByAsin(req, res, next) {
         });
 
         await req.model('Product').create({
-          asin: req.params.asin,
-          category: result.category,
+          asin      : req.params.asin,
+          category  : result.category,
           dimensions: result.dimensions,
-          rank: result.rank,
+          rank      : result.rank,
         }, (err, product) => {
-          if (err) {
-            return logger.error(err);
-          }
+          if (err) { return next(err); }
 
           browser.close();
+
           req.logger.verbose(`Product ${product._id} written to db. Sending product to client`);
           res.status(201).send(product);
         });
       })();
     }
-
-    // TODO: Render the view with product info here
-    // req.logger.verbose('Sending product to client');
-    // res.send(product);
   });
 }
 
