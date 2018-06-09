@@ -1,10 +1,10 @@
 html
   head
-    title #{product.asin} Information
+    title Product Info/#{product.asin}
   body
     include nav.pug
-    h3 ASIN: #{product.asin}
     ul
+      h3 ASIN: #{product.asin}
       li Category: #{product.category}
       li Best Sellers Rank: ##{product.rank}
       li Dimensions: #{product.dimensions}"

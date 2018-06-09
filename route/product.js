@@ -149,7 +149,9 @@ function search(req, res, next) {
 
 
 router.get('/product/:asin', findProductByAsin);
-router.get('/products', queryProducts);
+router.get('/products',      queryProducts);
+
 router.get('/search', search);
+router.get('/',       search);
 
 module.exports = router;

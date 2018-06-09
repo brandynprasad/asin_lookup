@@ -5,8 +5,12 @@ html
     include nav.pug
     form(onsubmit="validate()")
       div.form-group(name='searchForm')
-        label(for='asin') Search By ASIN: <br>
+        label(for='asin') Search By ASIN:
+        |
+        |
         input#name.form-control(type='text', placeholder='Enter ASIN code' name='asin')
+        |
+        |
         button(type='submit') Search
 
       script.

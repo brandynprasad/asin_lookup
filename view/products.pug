@@ -6,7 +6,7 @@ html
     ul
       each product in products
         h3
-          a(href='/#{product.asin}') ASIN: #{product.asin}
+          a(href='product/' + product.asin) ASIN: #{product.asin}
         li Category: #{product.category}
         li Best Sellers Rank: ##{product.rank}
         li Dimensions: #{product.dimensions}"
