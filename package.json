@@ -38,6 +38,7 @@
     "nodemon": "^1.17.5",
     "on-finished": "^2.3.0",
     "pretty-ms": "^2.1.0",
+    "pug": "^2.0.3",
     "puppeteer": "^1.4.0",
     "request": "^2.58.0",
     "scrape-it": "^5.0.5",

@@ -1,0 +1,27 @@
+html
+  head
+    title Product Search
+  body
+    include nav.pug
+    form(onsubmit="validate()")
+      div.form-group(name='searchForm')
+        label(for='asin') Search By ASIN: <br>
+        input#name.form-control(type='text', placeholder='Enter ASIN code' name='asin')
+        button(type='submit') Search
+
+      script.
+        function validate() {
+          event.preventDefault();
+          const asin = document.forms[0]["asin"].value;
+
+          // ASIN cannot be blank
+          if (asin == '') {
+            alert('ASIN field cannot be left blank');
+          // ASIN must be 10 character alphanumeric
+          } else if (!asin.match(/[^\w-]+/g) && asin.length !== 10) {
+            alert('Please enter a valid Amazon.com ASIN (e.g. B002QYW8LW)');
+          // ASIN appears to be valid. Go to product details view
+          } else {
+            window.location = `/product/${asin}`;
+          }
+        }

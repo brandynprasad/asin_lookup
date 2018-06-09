@@ -1,0 +1,13 @@
+html
+  head
+    title Product List
+  body
+    include nav.pug
+    ul
+      each product in products
+        h3
+          a(href='/#{product.asin}') ASIN: #{product.asin}
+        li Category: #{product.category}
+        li Best Sellers Rank: ##{product.rank}
+        li Dimensions: #{product.dimensions}"
+        hr

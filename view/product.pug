@@ -1,0 +1,10 @@
+html
+  head
+    title #{product.asin} Information
+  body
+    include nav.pug
+    h3 ASIN: #{product.asin}
+    ul
+      li Category: #{product.category}
+      li Best Sellers Rank: ##{product.rank}
+      li Dimensions: #{product.dimensions}"
