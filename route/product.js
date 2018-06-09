@@ -119,7 +119,11 @@ function findProductByAsin(req, res, next) {
         }, (err, product) => {
           if (err) {
             req.logger.error(err);
-            return res.status(404).end();
+
+            browser.close();
+
+            req.logger.verbose('Failed to create Product. Rendering 404 page.');
+            res.render('404');
           }
 
           browser.close();
